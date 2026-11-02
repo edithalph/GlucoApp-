@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    @apply bg-background font-body-md text-body-md text-on-background antialiased;
+    /* Safe areas iOS pour la barre de navigation basse. */
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  /* Le design system interdit les bordures dures : on adoucit les séparateurs. */
+  hr {
+    @apply border-outline-variant/40;
+  }
+}
+
+/**
+ * Material Symbols — sous-ensemble AUTO-HÉBERGÉ, limité aux ~58 icônes
+ * réellement utilisées (56 Ko contre ~3,5 Mo pour le jeu complet).
+ *
+ * Auto-hébergé plutôt que chargé depuis fonts.gstatic.com pour trois raisons :
+ * aucune requête vers un tiers à chaque chargement (l'adresse IP de
+ * l'utilisateur ne quitte pas le service, ce qui compte pour une application de
+ * santé), une requête bloquante en moins, et une CSP qui n'a plus besoin
+ * d'autoriser de domaine externe.
+ */
+@font-face {
+  font-family: "Material Symbols Outlined";
+  font-style: normal;
+  font-weight: 100 700;
+  /* `block` évite l'affichage transitoire des noms d'icônes en texte brut. */
+  font-display: block;
+  src: url("/fonts/material-symbols-subset.woff2?v=5e7d7ea4") format("woff2");
+}
+
+@layer components {
+  .material-symbols-outlined {
+    font-family: "Material Symbols Outlined";
+    font-weight: normal;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-feature-settings: "liga";
+    -webkit-font-smoothing: antialiased;
+    font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+  }
+
+  .material-symbols-outlined.fill {
+    font-variation-settings: "FILL" 1;
+  }
+
+  /* Carte standard du design system : surface la plus claire, pas de bordure dure. */
+  .ds-card {
+    @apply rounded-xl bg-surface-container-lowest p-5 shadow-card;
+  }
+}
+
+@layer utilities {
+  /* Masque la barre de défilement des carrousels de filtres. */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}

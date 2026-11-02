@@ -1,0 +1,19 @@
+node_modules/
+.next/
+out/
+build/
+.DS_Store
+
+# Variables d'environnement — contiennent des clés
+.env
+.env.local
+.env*.local
+
+# Logs
+npm-debug.log*
+yarn-error.log*
+*.tsbuildinfo
+next-env.d.ts
+
+# Identifiants de test — ne doivent pas partir dans un dépôt
+COMPTES-DEV.md

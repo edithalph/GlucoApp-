@@ -1,0 +1,45 @@
+{
+  "name": "GlucoApp — Votre santé, votre rythme",
+  "short_name": "GlucoApp",
+  "description": "Suivi glycémique, composition de repas et rituel du thé régulateur.",
+  "lang": "fr",
+  "dir": "ltr",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f8f9f9",
+  "theme_color": "#1a7a4a",
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Saisir une glycémie",
+      "short_name": "Glycémie",
+      "url": "/glycemie/saisie"
+    },
+    {
+      "name": "Démarrer une session thé",
+      "short_name": "Session thé",
+      "url": "/the/session/nouvelle"
+    }
+  ]
+}
