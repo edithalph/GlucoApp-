@@ -50,6 +50,7 @@ export default async function ConseilsPage({
       <nav aria-label="Catégories" className="flex flex-wrap gap-stack-sm">
         <Link
           href="/conseils"
+          prefetch={false}
           aria-current={categorie === null ? "page" : undefined}
           className={`shrink-0 rounded-full px-4 py-2 font-body-md text-body-md transition-all ${
             categorie === null
@@ -65,6 +66,7 @@ export default async function ConseilsPage({
             <Link
               key={c}
               href={`/conseils?categorie=${c}`}
+              prefetch={false}
               aria-current={actif ? "page" : undefined}
               className={`flex shrink-0 items-center gap-1.5 rounded-full px-4 py-2 font-body-md text-body-md transition-all ${
                 actif

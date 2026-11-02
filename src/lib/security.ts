@@ -20,7 +20,7 @@ function origineSupabase(): string {
   }
 }
 
-export function buildCsp(nonce: string, dev: boolean): string {
+export function buildCsp(nonce: string, dev: boolean, https: boolean): string {
   const supabase = origineSupabase();
 
   const directives: Record<string, string[]> = {
@@ -75,12 +75,14 @@ export function buildCsp(nonce: string, dev: boolean): string {
     .map(([cle, valeurs]) => `${cle} ${valeurs.join(" ")}`)
     .join("; ");
 
-  // En production uniquement : force le passage en HTTPS des sous-ressources.
-  return dev ? csp : `${csp}; upgrade-insecure-requests`;
+  // Un build de production peut aussi être servi en HTTP localement.
+  // Safari tenterait alors de charger CSS, polices et scripts en HTTPS,
+  // sur un serveur qui ne parle que HTTP : la page perdrait tout son design.
+  return https && !dev ? `${csp}; upgrade-insecure-requests` : csp;
 }
 
 /** En-têtes appliqués à toutes les réponses. */
-export function securityHeaders(dev: boolean): Record<string, string> {
+export function securityHeaders(dev: boolean, https: boolean): Record<string, string> {
   return {
     // Empêche le navigateur de deviner un type MIME différent de celui déclaré,
     // vecteur classique d'exécution de contenu téléversé.
@@ -107,7 +109,7 @@ export function securityHeaders(dev: boolean): Record<string, string> {
     "Cross-Origin-Resource-Policy": "same-origin",
 
     // HSTS n'a de sens qu'en HTTPS : inutile et gênant en local.
-    ...(dev
+    ...(dev || !https
       ? {}
       : {
           "Strict-Transport-Security":

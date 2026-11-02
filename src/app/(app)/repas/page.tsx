@@ -20,19 +20,22 @@ export default async function RepasPage() {
   } = await supabase.auth.getUser();
   if (!user) redirect("/connexion");
 
-  const [{ data: repas }, { data: favoris }] = await Promise.all([supabase
-    .from("meals")
-    .select("id, name, eaten_at, total_kcal, total_carbs_g, glycemic_load")
-    .eq("user_id", user.id)
-    .order("eaten_at", { ascending: false })
-    .limit(30), supabase.from("favorite_meals").select("meal_id").eq("user_id", user.id)]);
+  const [{ data: repas }, { data: favoris }] = await Promise.all([
+    supabase
+      .from("meals")
+      .select("id, name, eaten_at, total_kcal, total_carbs_g, glycemic_load")
+      .eq("user_id", user.id)
+      .order("eaten_at", { ascending: false })
+      .limit(30),
+    supabase.from("favorite_meals").select("meal_id").eq("user_id", user.id),
+  ]);
 
   const liste = repas ?? [];
   const idsFavoris = new Set((favoris ?? []).map((f) => f.meal_id));
 
   return (
     <main className="mx-auto flex w-full max-w-[1200px] flex-col gap-stack-lg px-container-padding-mobile md:px-container-padding-desktop pt-2">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-wrap items-center justify-between gap-3">
         <h1 className="font-headline-lg-mobile text-headline-lg-mobile text-on-background">
           Mes repas
         </h1>
@@ -44,6 +47,10 @@ export default async function RepasPage() {
           Composer
         </Link>
       </div>
+      <p className="-mt-3 text-sm text-on-surface-variant">
+        Vos assiettes, vos habitudes. Retrouvez et composez vos repas du
+        quotidien.
+      </p>
 
       {liste.length === 0 ? (
         <div className="flex flex-col items-center gap-stack-md rounded-xl bg-surface-container-low p-8 text-center">
@@ -60,7 +67,7 @@ export default async function RepasPage() {
           </Link>
         </div>
       ) : (
-        <ul className="flex flex-col gap-stack-sm">
+        <ul className="grid gap-4 lg:grid-cols-2">
           {liste.map((r) => {
             const gl = Number(r.glycemic_load);
             const bande = glycemicLoadBand(gl);
@@ -68,17 +75,17 @@ export default async function RepasPage() {
             return (
               <li
                 key={r.id}
-                className="flex items-center gap-2 rounded-xl bg-surface-container-lowest pr-3 shadow-sm"
+                className="flex min-w-0 flex-col rounded-xl border border-outline-variant/40 bg-surface-container-lowest shadow-card"
               >
                 <Link
                   href={`/repas/${r.id}/impact`}
-                  className="flex flex-1 items-center gap-4 rounded-xl p-4 transition-colors hover:bg-surface-variant"
+                  className="flex flex-1 flex-wrap items-center gap-3 rounded-xl p-5 transition-colors hover:bg-surface-variant"
                 >
                   <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-surface-container-high text-on-surface">
                     <Icon name="restaurant" fill size={20} />
                   </span>
 
-                  <span className="flex flex-1 flex-col">
+                  <span className="flex min-w-0 flex-1 flex-col gap-1 break-words">
                     <span className="font-body-lg text-body-lg text-on-surface">
                       {r.name ?? "Repas"}
                     </span>
@@ -95,15 +102,28 @@ export default async function RepasPage() {
                     {GL_BAND_LABELS[bande]}
                   </span>
                 </Link>
-
-                <BoutonSuppression
-                  action={supprimerRepas.bind(null, r.id)}
-                  libelle={`le repas du ${new Date(r.eaten_at).toLocaleDateString("fr-FR", { day: "numeric", month: "long" })}`}
-                />
-                <FavoriteButton mealId={r.id} initial={idsFavoris.has(r.id)} />
-                <form action={dupliquerRepas.bind(null, r.id)}>
-                  <button type="submit" aria-label="Dupliquer ce repas" className="rounded-full p-2 text-on-surface-variant"><Icon name="content_copy" size={19} /></button>
-                </form>
+                <div className="flex items-center justify-end gap-2 border-t border-outline-variant/40 px-4 py-2">
+                  <span className="mr-auto text-xs text-on-surface-variant">
+                    Mon repas
+                  </span>
+                  <BoutonSuppression
+                    action={supprimerRepas.bind(null, r.id)}
+                    libelle={`le repas du ${new Date(r.eaten_at).toLocaleDateString("fr-FR", { day: "numeric", month: "long" })}`}
+                  />
+                  <FavoriteButton
+                    mealId={r.id}
+                    initial={idsFavoris.has(r.id)}
+                  />
+                  <form action={dupliquerRepas.bind(null, r.id)}>
+                    <button
+                      type="submit"
+                      aria-label="Dupliquer ce repas"
+                      className="grid h-11 w-11 place-items-center rounded-full text-on-surface-variant hover:bg-surface-variant"
+                    >
+                      <Icon name="content_copy" size={19} />
+                    </button>
+                  </form>
+                </div>
               </li>
             );
           })}

@@ -26,11 +26,12 @@ type Ligne = { food: AlimentTrouve; quantity_g: number };
  * référence : la cuillère à soupe (15 ml) pour les matières grasses, le verre
  * (250 ml) pour les boissons.
  */
-const PORTIONS: Record<string, { depart: number; pas: number; unite: string }> = {
-  "Huiles et matières grasses": { depart: 15, pas: 5, unite: "ml" },
-  Boissons: { depart: 250, pas: 50, unite: "ml" },
-  Oléagineux: { depart: 30, pas: 10, unite: "g" },
-};
+const PORTIONS: Record<string, { depart: number; pas: number; unite: string }> =
+  {
+    "Huiles et matières grasses": { depart: 15, pas: 5, unite: "ml" },
+    Boissons: { depart: 250, pas: 50, unite: "ml" },
+    Oléagineux: { depart: 30, pas: 10, unite: "g" },
+  };
 
 const PORTION_DEFAUT = { depart: 100, pas: 25, unite: "g" };
 
@@ -83,6 +84,7 @@ export function Composer({ erreurInitiale }: { erreurInitiale?: string }) {
     const q = terme.trim();
     if (q.length < 2) {
       setResultats([]);
+      setRecherche(false);
       return;
     }
 
@@ -135,8 +137,8 @@ export function Composer({ erreurInitiale }: { erreurInitiale?: string }) {
 
   function valider() {
     setErreur("");
-    demarrerEnvoi(() => {
-      creerRepas({
+    demarrerEnvoi(async () => {
+      await creerRepas({
         items: lignes.map((l) => ({
           food_id: l.food.id,
           quantity_g: l.quantity_g,
@@ -280,8 +282,8 @@ export function Composer({ erreurInitiale }: { erreurInitiale?: string }) {
 
       {/* Barre de totaux, fixée en bas comme dans la maquette */}
       {lignes.length > 0 && (
-        <div className="fixed inset-x-0 bottom-[88px] z-40 mx-auto max-w-[1200px] px-container-padding-mobile md:bottom-4">
-          <div className="flex items-center gap-4 rounded-xl bg-inverse-surface p-4 shadow-card">
+        <div className="fixed inset-x-0 bottom-[88px] z-40 mx-auto max-w-[1200px] px-container-padding-mobile md:bottom-4 md:left-24 lg:left-60">
+          <div className="flex flex-wrap items-center gap-3 rounded-xl bg-inverse-surface p-4 shadow-card">
             <span className="flex flex-col">
               <span className="font-headline-md text-headline-md tabular-nums text-inverse-on-surface">
                 {totaux.glycemicLoad.toFixed(1).replace(".", ",")}
@@ -298,8 +300,8 @@ export function Composer({ erreurInitiale }: { erreurInitiale?: string }) {
                 {GL_BAND_LABELS[bande]}
               </span>
               <span className="font-body-md text-body-md text-inverse-on-surface opacity-90">
-                {Math.round(totaux.kcal)} kcal ·{" "}
-                {Math.round(totaux.carbsG)} g de glucides
+                {Math.round(totaux.kcal)} kcal · {Math.round(totaux.carbsG)} g
+                de glucides
               </span>
             </span>
 

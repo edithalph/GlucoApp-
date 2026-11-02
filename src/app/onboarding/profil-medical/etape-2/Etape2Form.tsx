@@ -53,12 +53,16 @@ function Submit({ disabled }: { disabled: boolean }) {
   );
 }
 
-export function Etape2Form() {
+export function Etape2Form({
+  conditionInitiale,
+}: {
+  conditionInitiale?: string | null;
+}) {
   const [state, formAction] = useActionState<ActionState, FormData>(
     enregistrerEtape2,
     null,
   );
-  const [choix, setChoix] = useState<string | null>(null);
+  const [choix, setChoix] = useState<string | null>(conditionInitiale ?? null);
 
   return (
     <form action={formAction} className="flex flex-col gap-stack-lg">

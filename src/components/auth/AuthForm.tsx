@@ -7,6 +7,7 @@ import { FloatingInput } from "@/components/ui/FloatingInput";
 import { FormMessage, type ActionState } from "@/components/ui/FormMessage";
 import { AppleLogo, GoogleLogo } from "@/components/ui/BrandIcon";
 import { signInWithProvider } from "@/app/auth/actions";
+import type { SocialProvider } from "@/lib/supabase/providers";
 
 function SubmitButton({ label }: { label: string }) {
   const { pending } = useFormStatus();
@@ -35,7 +36,7 @@ function ProviderButton({
     <form action={signInWithProvider.bind(null, provider)}>
       <button
         type="submit"
-        className="flex h-14 w-full items-center justify-center gap-3 whitespace-nowrap rounded-xl border border-outline-variant bg-surface-container-lowest font-title-lg text-title-lg text-on-background transition-colors hover:bg-surface-variant"
+        className="flex h-14 w-full items-center justify-center gap-3 rounded-xl border border-outline-variant bg-surface-container-lowest text-sm font-semibold text-on-background transition-colors hover:bg-surface-variant"
       >
         {logo}
         {label}
@@ -49,12 +50,14 @@ export function AuthForm({
   action,
   erreurInitiale,
   suivant,
+  providers = [],
 }: {
   mode: "signup" | "signin";
   action: (prev: ActionState, formData: FormData) => Promise<ActionState>;
   erreurInitiale?: string;
   /** Chemin interne à rejoindre après connexion. */
   suivant?: string;
+  providers?: SocialProvider[];
 }) {
   const [state, formAction] = useActionState<ActionState, FormData>(
     action,
@@ -64,10 +67,18 @@ export function AuthForm({
   const isSignup = mode === "signup";
 
   return (
-    <main className="relative z-10 mx-auto flex w-full max-w-md flex-1 flex-col px-container-padding-mobile pb-stack-lg pt-4">
-      <h1 className="mb-stack-lg font-headline-lg-mobile text-headline-lg-mobile text-on-background">
+    <main className="relative z-10 mx-auto flex w-full max-w-md flex-1 flex-col px-container-padding-mobile pb-10 pt-6 lg:flex-none lg:py-12">
+      <p className="eyebrow mb-3">
+        {isSignup ? "Un nouveau départ" : "Votre espace personnel"}
+      </p>
+      <h1 className="font-headline-lg-mobile text-headline-lg-mobile font-semibold text-on-background">
         {isSignup ? "Créer mon compte" : "Content de vous revoir"}
       </h1>
+      <p className="mb-8 mt-3 text-sm leading-relaxed text-on-surface-variant">
+        {isSignup
+          ? "Quelques instants pour commencer à prendre soin de votre quotidien."
+          : "Retrouvez votre suivi et avancez à votre rythme."}
+      </p>
 
       <form action={formAction} className="flex w-full flex-col gap-stack-md">
         {suivant && (
@@ -98,26 +109,34 @@ export function AuthForm({
         <SubmitButton label={isSignup ? "Créer mon compte" : "Se connecter"} />
       </form>
 
-      <div className="my-stack-lg flex w-full items-center gap-4">
-        <div className="h-px flex-1 bg-outline-variant" />
-        <span className="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant">
-          ou
-        </span>
-        <div className="h-px flex-1 bg-outline-variant" />
-      </div>
+      {providers.length > 0 && (
+        <>
+          <div className="my-stack-lg flex w-full items-center gap-4">
+            <div className="h-px flex-1 bg-outline-variant" />
+            <span className="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant">
+              ou
+            </span>
+            <div className="h-px flex-1 bg-outline-variant" />
+          </div>
 
-      <div className="flex w-full flex-col gap-stack-sm">
-        <ProviderButton
-          provider="google"
-          label="Continuer avec Google"
-          logo={<GoogleLogo />}
-        />
-        <ProviderButton
-          provider="apple"
-          label="Continuer avec Apple"
-          logo={<AppleLogo />}
-        />
-      </div>
+          <div className="flex w-full flex-col gap-stack-sm">
+            {providers.includes("google") && (
+              <ProviderButton
+                provider="google"
+                label="Continuer avec Google"
+                logo={<GoogleLogo />}
+              />
+            )}
+            {providers.includes("apple") && (
+              <ProviderButton
+                provider="apple"
+                label="Continuer avec Apple"
+                logo={<AppleLogo />}
+              />
+            )}
+          </div>
+        </>
+      )}
 
       <p className="mt-stack-lg text-center font-body-md text-body-md text-on-surface-variant">
         {isSignup ? (

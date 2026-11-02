@@ -18,6 +18,22 @@ const etape2 = z.object({
   condition: z.enum(["type1", "type2", "prediabetic", "prevention", "other"]),
 });
 
+/** Le profil facultatif peut être complété ultérieurement depuis le profil. */
+export async function ignorerProfil() {
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  if (!user) redirect("/connexion");
+  const { error } = await supabase
+    .from("profiles")
+    .update({ onboarding_completed: true })
+    .eq("id", user.id);
+  if (error) throw new Error("Impossible de continuer pour le moment.");
+  revalidatePath("/", "layout");
+  redirect("/tableau-de-bord");
+}
+
 export async function enregistrerEtape1(
   _prev: ActionState,
   formData: FormData,

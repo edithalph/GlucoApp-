@@ -13,7 +13,11 @@ import {
   nextOffset,
   TEA_OFFSETS,
 } from "@/lib/tea";
-import { enregistrerMesure, marquerTheePris, terminerSession } from "../../actions";
+import {
+  enregistrerMesure,
+  marquerTheePris,
+  terminerSession,
+} from "../../actions";
 
 type Mesure = { offset_minutes: number; value_mgdl: number };
 
@@ -173,7 +177,11 @@ export function SessionEnCours({
         <button
           type="button"
           disabled={enCours}
-          onClick={() => demarrer(() => void marquerTheePris(sessionId))}
+          onClick={() =>
+            demarrer(async () => {
+              await marquerTheePris(sessionId);
+            })
+          }
           className="flex h-14 w-full items-center justify-center gap-2 rounded-[14px] bg-tertiary-container font-title-lg text-title-lg text-on-tertiary shadow-md transition-opacity hover:opacity-90 disabled:opacity-60"
         >
           <Icon name="local_cafe" fill size={20} />
@@ -208,7 +216,11 @@ export function SessionEnCours({
       <button
         type="button"
         disabled={enCours}
-        onClick={() => demarrer(() => void terminerSession(sessionId))}
+        onClick={() =>
+          demarrer(async () => {
+            await terminerSession(sessionId);
+          })
+        }
         className="self-center rounded-full px-4 py-2 font-label-md text-label-md text-on-surface-variant transition-colors hover:bg-surface-variant disabled:opacity-60"
       >
         Terminer la session

@@ -10,6 +10,11 @@ export default async function Etape2Page() {
     data: { user },
   } = await supabase.auth.getUser();
   if (!user) redirect("/connexion");
+  const { data: profile } = await supabase
+    .from("profiles")
+    .select("condition")
+    .eq("id", user.id)
+    .single();
 
   return (
     <div className="flex min-h-[100dvh] justify-center bg-background text-on-background">
@@ -39,7 +44,7 @@ export default async function Etape2Page() {
           <div className="h-full w-full rounded-full bg-primary" />
         </div>
 
-        <Etape2Form />
+        <Etape2Form conditionInitiale={profile?.condition} />
       </div>
     </div>
   );

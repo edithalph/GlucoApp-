@@ -36,22 +36,23 @@ export default async function GlycemiePage({
   } = await supabase.auth.getUser();
   if (!user) redirect("/connexion");
 
-  const { data: profile } = await supabase
-    .from("profiles")
-    .select("preferred_unit, target_min_mgdl, target_max_mgdl")
-    .eq("id", user.id)
-    .single();
+  const [{ data: profile }, { data: releves }] = await Promise.all([
+    supabase
+      .from("profiles")
+      .select("preferred_unit, target_min_mgdl, target_max_mgdl")
+      .eq("id", user.id)
+      .single(),
+    supabase
+      .from("glucose_readings")
+      .select("id, value_mgdl, context, measured_at")
+      .eq("user_id", user.id)
+      .gte("measured_at", periodStart(periode).toISOString())
+      .order("measured_at", { ascending: false }),
+  ]);
 
   const unit = (profile?.preferred_unit ?? "g_l") as GlucoseUnit;
   const targetMin = Number(profile?.target_min_mgdl ?? 70);
   const targetMax = Number(profile?.target_max_mgdl ?? 140);
-
-  const { data: releves } = await supabase
-    .from("glucose_readings")
-    .select("id, value_mgdl, context, measured_at")
-    .eq("user_id", user.id)
-    .gte("measured_at", periodStart(periode).toISOString())
-    .order("measured_at", { ascending: false });
 
   const liste = releves ?? [];
   const stats = computeStats(liste, targetMin, targetMax);
@@ -100,6 +101,7 @@ export default async function GlycemiePage({
             <Link
               key={p}
               href={`/glycemie?periode=${p}`}
+              prefetch={false}
               aria-current={actif ? "page" : undefined}
               className={`shrink-0 rounded-full px-4 py-2 font-body-md text-body-md transition-all ${
                 actif
@@ -173,12 +175,21 @@ export default async function GlycemiePage({
       </section>
 
       <section className="flex flex-col gap-stack-sm">
-        <h2 className="font-title-lg text-title-lg text-on-background">Ce que vos données indiquent</h2>
+        <h2 className="font-title-lg text-title-lg text-on-background">
+          Ce que vos données indiquent
+        </h2>
         <div className="grid gap-stack-sm md:grid-cols-3">
           {insights.map((insight) => (
-            <article key={insight.title} className={`rounded-xl p-4 ${insight.tone === "positive" ? "bg-primary-fixed" : insight.tone === "attention" ? "bg-tertiary-fixed/50" : "bg-surface-container-low"}`}>
-              <h3 className="font-title-lg text-title-lg text-on-surface">{insight.title}</h3>
-              <p className="mt-1 font-body-md text-body-md text-on-surface-variant">{insight.body}</p>
+            <article
+              key={insight.title}
+              className={`rounded-xl p-4 ${insight.tone === "positive" ? "bg-primary-fixed" : insight.tone === "attention" ? "bg-tertiary-fixed/50" : "bg-surface-container-low"}`}
+            >
+              <h3 className="font-title-lg text-title-lg text-on-surface">
+                {insight.title}
+              </h3>
+              <p className="mt-1 font-body-md text-body-md text-on-surface-variant">
+                {insight.body}
+              </p>
             </article>
           ))}
         </div>
@@ -197,12 +208,7 @@ export default async function GlycemiePage({
 
         {liste.length === 0 ? (
           <div className="flex flex-col items-center gap-stack-md rounded-xl bg-surface-container-low p-8 text-center">
-            <Icon
-              name="bloodtype"
-              size={40}
-              className="text-outline"
-              fill
-            />
+            <Icon name="bloodtype" size={40} className="text-outline" fill />
             <p className="font-body-md text-body-md text-on-surface-variant">
               {dernierGlobal
                 ? `Aucun relevé sur cette période. Votre dernier remonte au ${new Date(dernierGlobal.measured_at).toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" })}.`
@@ -223,7 +229,9 @@ export default async function GlycemiePage({
                 href="/glycemie/saisie"
                 className="rounded-full bg-primary-container px-4 py-2 font-label-md text-label-md text-on-primary"
               >
-                {dernierGlobal ? "Saisir une mesure" : "Saisir ma première mesure"}
+                {dernierGlobal
+                  ? "Saisir une mesure"
+                  : "Saisir ma première mesure"}
               </Link>
             </div>
           </div>

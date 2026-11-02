@@ -40,7 +40,7 @@ export function TeaEffectChart({
       bandeMax={fromMgdl(targetMax, unit)}
       formatValeur={format}
       formatAbscisse={(x) => libelles[Math.round(x)] ?? ""}
-      couleur="#6b4e00"
+      couleur="#785209"
       messageVide="Aucune mesure à représenter."
     />
   );

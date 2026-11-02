@@ -26,21 +26,29 @@ export function SideNav({
   const initiale = (firstName ?? "?").charAt(0).toUpperCase();
 
   return (
-    <aside className="fixed inset-y-0 left-0 z-50 hidden w-24 flex-col border-r border-outline-variant/40 bg-surface-container-lowest md:flex lg:w-60">
+    <aside className="fixed inset-y-0 left-0 z-50 hidden w-24 flex-col bg-brand-navy text-white md:flex lg:w-60">
       {/* Marque */}
       <Link
         href="/tableau-de-bord"
-        className="flex h-16 shrink-0 items-center justify-center gap-2 px-3 lg:justify-start lg:px-5"
+        className="flex h-24 shrink-0 items-center justify-center gap-3 px-3 lg:justify-start lg:px-6"
       >
-        <Icon name="water_drop" fill size={26} className="text-primary" />
-        <span className="hidden font-headline-md text-headline-md font-semibold text-primary lg:inline">
+        <span className="grid h-10 w-10 shrink-0 place-items-center rounded-2xl bg-brand-teal text-brand-navy">
+          <Icon name="water_drop" fill size={24} />
+        </span>
+        <span className="hidden text-xl font-semibold tracking-tight text-white lg:inline">
           GlucoApp
         </span>
       </Link>
 
       {/* Sections */}
-      <nav aria-label="Navigation principale" className="flex-1 px-2 py-2 lg:px-3">
-        <ul className="flex flex-col gap-1">
+      <nav
+        aria-label="Navigation principale"
+        className="flex-1 px-2 py-4 lg:px-4"
+      >
+        <p className="mb-5 hidden px-4 text-[10px] font-semibold uppercase tracking-[0.2em] text-brand-mist/70 lg:block">
+          Mon quotidien
+        </p>
+        <ul className="flex flex-col gap-2">
           {NAV_ITEMS.map((item) => {
             const actif = estActif(item, pathname);
 
@@ -54,8 +62,8 @@ export function SideNav({
                   // À partir de lg : libellé à côté de l'icône.
                   className={`flex min-h-[56px] flex-col items-center justify-center gap-0.5 rounded-xl px-1 py-2 transition-colors lg:min-h-[52px] lg:flex-row lg:justify-start lg:gap-3 lg:px-4 ${
                     actif
-                      ? "bg-primary-fixed font-semibold text-on-primary-fixed-variant"
-                      : "text-on-surface-variant hover:bg-surface-variant"
+                      ? "bg-brand-mist font-semibold text-brand-navy shadow-sm"
+                      : "text-brand-mist hover:bg-white/10 hover:text-white"
                   }`}
                 >
                   <Icon name={item.icon} fill={actif} size={22} />
@@ -72,11 +80,25 @@ export function SideNav({
       </nav>
 
       {/* Raccourcis bas */}
-      <div className="flex shrink-0 flex-col gap-1 border-t border-outline-variant/40 px-2 py-3 lg:px-3">
+      <Link
+        href="/conseils"
+        className="mx-4 mb-6 hidden rounded-xl border border-brand-teal/30 bg-white/5 p-4 lg:block"
+      >
+        <Icon name="lightbulb" className="mb-3 text-brand-gold" />
+        <span className="block text-sm font-semibold">Un pas à la fois.</span>
+        <span className="mt-2 block text-xs leading-relaxed text-brand-mist">
+          Des conseils pour mieux comprendre votre quotidien.
+        </span>
+        <span className="mt-3 inline-flex items-center gap-2 text-xs font-semibold text-brand-teal">
+          Explorer les conseils
+          <Icon name="arrow_forward" size={16} />
+        </span>
+      </Link>
+      <div className="flex shrink-0 flex-col gap-1 border-t border-white/15 px-2 py-4 lg:px-3">
         <Link
           href="/profil/rappels"
           title="Rappels"
-          className="flex min-h-[48px] items-center justify-center gap-3 rounded-xl px-3 text-on-surface-variant transition-colors hover:bg-surface-variant lg:justify-start lg:px-4"
+          className="flex min-h-[48px] items-center justify-center gap-3 rounded-xl px-3 text-brand-mist transition-colors hover:bg-white/10 lg:justify-start lg:px-4"
         >
           <Icon name="notifications" size={20} />
           <span className="hidden font-body-md text-body-md lg:inline">
@@ -88,7 +110,7 @@ export function SideNav({
         <Link
           href="/profil"
           title={firstName ?? "Mon profil"}
-          className="flex min-h-[48px] items-center justify-center gap-3 rounded-xl px-3 transition-colors hover:bg-surface-variant lg:justify-start lg:px-4"
+          className="flex min-h-[48px] items-center justify-center gap-3 rounded-xl px-3 transition-colors hover:bg-white/10 lg:justify-start lg:px-4"
         >
           {avatarUrl ? (
             // eslint-disable-next-line @next/next/no-img-element
@@ -102,7 +124,7 @@ export function SideNav({
               {initiale}
             </span>
           )}
-          <span className="hidden truncate font-body-md text-body-md text-on-surface lg:inline">
+          <span className="hidden truncate font-body-md text-body-md text-white lg:inline">
             {firstName ?? "Mon profil"}
           </span>
         </Link>

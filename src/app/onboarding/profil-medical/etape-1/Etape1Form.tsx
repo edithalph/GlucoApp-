@@ -22,16 +22,32 @@ function Submit() {
   );
 }
 
-export function Etape1Form({ prenomInitial }: { prenomInitial: string }) {
+export function Etape1Form({
+  profilInitial,
+}: {
+  profilInitial: {
+    first_name: string | null;
+    age: number | null;
+    sex: "male" | "female" | null;
+    weight_kg: number | null;
+    height_cm: number | null;
+  } | null;
+}) {
   const [state, formAction] = useActionState<ActionState, FormData>(
     enregistrerEtape1,
     null,
   );
 
-  const [age, setAge] = useState(45);
-  const [sex, setSex] = useState<"male" | "female">("female");
-  const [weight, setWeight] = useState("");
-  const [height, setHeight] = useState("");
+  const [age, setAge] = useState(profilInitial?.age ?? 45);
+  const [sex, setSex] = useState<"male" | "female">(
+    profilInitial?.sex ?? "female",
+  );
+  const [weight, setWeight] = useState(
+    profilInitial?.weight_kg?.toString() ?? "",
+  );
+  const [height, setHeight] = useState(
+    profilInitial?.height_cm?.toString() ?? "",
+  );
 
   const bmi = computeBmi(Number(weight), Number(height));
 
@@ -41,7 +57,7 @@ export function Etape1Form({ prenomInitial }: { prenomInitial: string }) {
         label="Prénom"
         name="first_name"
         autoComplete="given-name"
-        defaultValue={prenomInitial}
+        defaultValue={profilInitial?.first_name ?? ""}
         required
       />
 
@@ -115,6 +131,7 @@ export function Etape1Form({ prenomInitial }: { prenomInitial: string }) {
           min={20}
           max={400}
           required
+          defaultValue={profilInitial?.weight_kg ?? undefined}
           onValueChange={setWeight}
         />
         <FloatingInput
@@ -126,6 +143,7 @@ export function Etape1Form({ prenomInitial }: { prenomInitial: string }) {
           min={50}
           max={260}
           required
+          defaultValue={profilInitial?.height_cm ?? undefined}
           onValueChange={setHeight}
         />
       </div>

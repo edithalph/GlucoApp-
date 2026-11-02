@@ -58,7 +58,13 @@ export function SaisieForm({
   );
 
   const [saisie, setSaisie] = useState("");
-  const [contexte, setContexte] = useState<ReadingContext>("fasting");
+  const mealInitial = meals.some((meal) => meal.id === initialMealId)
+    ? initialMealId!
+    : "";
+  const [mealId, setMealId] = useState(mealInitial);
+  const [contexte, setContexte] = useState<ReadingContext>(
+    mealInitial ? "post_meal" : "fasting",
+  );
   const [noteOuverte, setNoteOuverte] = useState(false);
   const [detailsOuverts, setDetailsOuverts] = useState(false);
   const [quand] = useState(() => new Date());
@@ -71,7 +77,9 @@ export function SaisieForm({
   const valeurMgdl = valide ? validation.valueMgdl : null;
 
   const statut =
-    valeurMgdl !== null ? readingStatus(valeurMgdl, targetMin, targetMax) : null;
+    valeurMgdl !== null
+      ? readingStatus(valeurMgdl, targetMin, targetMax)
+      : null;
 
   function frappe(k: string) {
     setSaisie((v) => {
@@ -113,6 +121,7 @@ export function SaisieForm({
       />
 
       <SafetyNotice valueMgdl={valeurMgdl} />
+      <input type="hidden" name="meal_id" value={mealId} readOnly />
 
       {/* Valeur saisie */}
       <div className="flex flex-col items-center gap-2 py-4">
@@ -227,22 +236,77 @@ export function SaisieForm({
           Ajouter du contexte
           <Icon name={detailsOuverts ? "expand_less" : "expand_more"} />
         </button>
-        {detailsOuverts && (
-          <div className="mt-4 grid grid-cols-2 gap-3">
-            <label className="col-span-2 flex flex-col gap-1 font-label-md text-label-md text-on-surface-variant">
-              Repas associé
-              <select name="meal_id" defaultValue={meals.some((meal) => meal.id === initialMealId) ? initialMealId : ""} className="h-11 rounded-lg border border-outline-variant bg-surface-container-lowest px-3 font-body-md text-on-surface">
-                <option value="">Aucun</option>
-                {meals.map((meal) => <option key={meal.id} value={meal.id}>{meal.label}</option>)}
-              </select>
-            </label>
-            <label className="flex flex-col gap-1 font-label-md text-label-md text-on-surface-variant">Activité (min)<input name="activity_minutes" type="number" min="0" max="1440" inputMode="numeric" className="h-11 rounded-lg border border-outline-variant bg-surface-container-lowest px-3 font-body-md text-on-surface" /></label>
-            <label className="flex flex-col gap-1 font-label-md text-label-md text-on-surface-variant">Sommeil (h)<input name="sleep_hours" type="number" min="0" max="24" step="0.5" inputMode="decimal" className="h-11 rounded-lg border border-outline-variant bg-surface-container-lowest px-3 font-body-md text-on-surface" /></label>
-            <label className="flex flex-col gap-1 font-label-md text-label-md text-on-surface-variant">Stress (1–5)<select name="stress_level" defaultValue="" className="h-11 rounded-lg border border-outline-variant bg-surface-container-lowest px-3 font-body-md text-on-surface"><option value="">Non précisé</option>{[1,2,3,4,5].map((n) => <option key={n} value={n}>{n}</option>)}</select></label>
-            <label className="flex items-center gap-2 self-end pb-2 font-body-md text-body-md text-on-surface"><input name="medication_taken" type="checkbox" value="true" /> Traitement pris</label>
-            <label className="col-span-2 flex flex-col gap-1 font-label-md text-label-md text-on-surface-variant">Symptômes éventuels<textarea name="symptoms" rows={2} maxLength={500} placeholder="Facultatif" className="rounded-lg border border-outline-variant bg-surface-container-lowest p-3 font-body-md text-on-surface" /></label>
-          </div>
-        )}
+        <div
+          className={detailsOuverts ? "mt-4 grid grid-cols-2 gap-3" : "hidden"}
+        >
+          <label className="col-span-2 flex flex-col gap-1 font-label-md text-label-md text-on-surface-variant">
+            Repas associé
+            <select
+              value={mealId}
+              onChange={(event) => setMealId(event.target.value)}
+              className="h-11 min-w-0 rounded-lg border border-outline-variant bg-surface-container-lowest px-3 font-body-md text-on-surface"
+            >
+              <option value="">Aucun</option>
+              {meals.map((meal) => (
+                <option key={meal.id} value={meal.id}>
+                  {meal.label}
+                </option>
+              ))}
+            </select>
+          </label>
+          <label className="flex flex-col gap-1 font-label-md text-label-md text-on-surface-variant">
+            Activité (min)
+            <input
+              name="activity_minutes"
+              type="number"
+              min="0"
+              max="1440"
+              inputMode="numeric"
+              className="h-11 rounded-lg border border-outline-variant bg-surface-container-lowest px-3 font-body-md text-on-surface"
+            />
+          </label>
+          <label className="flex flex-col gap-1 font-label-md text-label-md text-on-surface-variant">
+            Sommeil (h)
+            <input
+              name="sleep_hours"
+              type="number"
+              min="0"
+              max="24"
+              step="0.5"
+              inputMode="decimal"
+              className="h-11 rounded-lg border border-outline-variant bg-surface-container-lowest px-3 font-body-md text-on-surface"
+            />
+          </label>
+          <label className="flex flex-col gap-1 font-label-md text-label-md text-on-surface-variant">
+            Stress (1–5)
+            <select
+              name="stress_level"
+              defaultValue=""
+              className="h-11 rounded-lg border border-outline-variant bg-surface-container-lowest px-3 font-body-md text-on-surface"
+            >
+              <option value="">Non précisé</option>
+              {[1, 2, 3, 4, 5].map((n) => (
+                <option key={n} value={n}>
+                  {n}
+                </option>
+              ))}
+            </select>
+          </label>
+          <label className="flex items-center gap-2 self-end pb-2 font-body-md text-body-md text-on-surface">
+            <input name="medication_taken" type="checkbox" value="true" />{" "}
+            Traitement pris
+          </label>
+          <label className="col-span-2 flex flex-col gap-1 font-label-md text-label-md text-on-surface-variant">
+            Symptômes éventuels
+            <textarea
+              name="symptoms"
+              rows={2}
+              maxLength={500}
+              placeholder="Facultatif"
+              className="rounded-lg border border-outline-variant bg-surface-container-lowest p-3 font-body-md text-on-surface"
+            />
+          </label>
+        </div>
       </section>
 
       {/* Pavé numérique */}

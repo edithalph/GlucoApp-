@@ -23,7 +23,7 @@ export const NAV_ITEMS: NavItem[] = [
     correspond: ["/poids"],
   },
   { href: "/repas", label: "Repas", icon: "restaurant" },
-  { href: "/the", label: "Thé", icon: "local_library" },
+  { href: "/the", label: "Thé", icon: "emoji_food_beverage" },
   {
     href: "/profil",
     label: "Profil",

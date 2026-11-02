@@ -2,6 +2,10 @@ import type { Metadata, Viewport } from "next";
 import { Inter, Newsreader } from "next/font/google";
 import "./globals.css";
 
+// La CSP utilise un nonce par requête. Une page pré-générée, comme
+// l'introduction, aurait des scripts sans ce nonce et ne pourrait pas s'hydrater.
+export const dynamic = "force-dynamic";
+
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
@@ -37,10 +41,9 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#1a7a4a",
+  themeColor: "#173B57",
   width: "device-width",
   initialScale: 1,
-  maximumScale: 1,
   viewportFit: "cover",
 };
 

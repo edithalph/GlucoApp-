@@ -9,13 +9,14 @@
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
+    "qa:local": "node scripts/qa-local.mjs",
     "icones": "node scripts/icones.mjs",
     "icones:verifier": "node scripts/icones.mjs --verifier"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.4",
     "@supabase/supabase-js": "^2.112.0",
-    "next": "^15.5.22",
+    "next": "15.5.28",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "server-only": "^0.0.1",
@@ -29,6 +30,7 @@
     "autoprefixer": "^10.4.20",
     "eslint": "^9.39.5",
     "eslint-config-next": "^15.0.3",
+    "playwright": "1.62.1",
     "postcss": "^8.4.49",
     "tailwindcss": "^3.4.14",
     "typescript": "^5.6.3"

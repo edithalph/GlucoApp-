@@ -54,7 +54,7 @@ export function GlucoseChart({
           month: "short",
         })
       }
-      couleur="#2f6388"
+      couleur="#247BA0"
       messageVide="Pas encore assez de relevés pour tracer une courbe."
     />
   );

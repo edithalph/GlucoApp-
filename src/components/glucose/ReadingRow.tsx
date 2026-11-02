@@ -35,14 +35,14 @@ export function ReadingRow({
   const statut = readingStatus(valueMgdl, targetMin, targetMax);
 
   return (
-    <li className="flex items-center gap-4 rounded-xl bg-surface-container-lowest p-4 shadow-sm">
+    <li className="flex flex-wrap items-center gap-3 rounded-xl border border-outline-variant/40 bg-surface-container-lowest p-4 shadow-sm">
       <span
         className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full ${STATUS_STYLES[statut].chip}`}
       >
         <Icon name={trendIcon(trend)} size={20} />
       </span>
 
-      <span className="flex flex-1 flex-col">
+      <span className="flex min-w-[110px] flex-1 flex-col">
         <span className="font-title-lg text-title-lg tabular-nums text-on-surface">
           {formatGlucose(valueMgdl, unit)}{" "}
           <span className="font-body-md text-body-md text-on-surface-variant">

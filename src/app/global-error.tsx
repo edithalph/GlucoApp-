@@ -22,8 +22,8 @@ export default function GlobalError({
           alignItems: "center",
           justifyContent: "center",
           padding: 24,
-          background: "#f8f9f9",
-          color: "#191c1c",
+          background: "#F4F8FA",
+          color: "#173B57",
           fontFamily: "system-ui, -apple-system, sans-serif",
           textAlign: "center",
         }}
@@ -32,12 +32,12 @@ export default function GlobalError({
           <h1 style={{ fontSize: 24, fontWeight: 600, marginBottom: 12 }}>
             GlucoApp est momentanément indisponible
           </h1>
-          <p style={{ color: "#3f4941", lineHeight: 1.6, marginBottom: 24 }}>
+          <p style={{ color: "#526A7B", lineHeight: 1.6, marginBottom: 24 }}>
             Une erreur a interrompu le chargement. Vos données enregistrées ne
             sont pas affectées.
           </p>
           {error.digest && (
-            <p style={{ color: "#6f7a70", fontSize: 12, marginBottom: 24 }}>
+            <p style={{ color: "#526A7B", fontSize: 12, marginBottom: 24 }}>
               Référence : {error.digest}
             </p>
           )}
@@ -49,7 +49,7 @@ export default function GlobalError({
               height: 56,
               border: "none",
               borderRadius: 14,
-              background: "#1a7a4a",
+              background: "#173B57",
               color: "#ffffff",
               fontSize: 16,
               fontWeight: 600,

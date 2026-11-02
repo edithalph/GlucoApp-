@@ -16,7 +16,11 @@ const DEV = process.env.NODE_ENV !== "production";
 export async function middleware(request: NextRequest) {
   // Nonce unique par requête, consommé par la CSP et par les scripts de Next.
   const nonce = crypto.randomUUID().replace(/-/g, "");
-  const csp = buildCsp(nonce, DEV);
+  // Les reverse proxies de production transmettent le protocole d'origine.
+  // NODE_ENV seul ne permet pas de distinguer HTTPS d'un `next start` local.
+  const https = request.nextUrl.protocol === "https:" ||
+    request.headers.get("x-forwarded-proto") === "https";
+  const csp = buildCsp(nonce, DEV, https);
 
   // Le nonce doit être visible du rendu serveur : on le pose sur la requête.
   const requestHeaders = new Headers(request.headers);
@@ -63,17 +67,17 @@ export async function middleware(request: NextRequest) {
     // de transformer la page de connexion en redirection ouverte.
     url.searchParams.set("suivant", `${pathname}${search}`);
     const redirection = NextResponse.redirect(url);
-    appliquerEntetes(redirection, csp);
+    appliquerEntetes(redirection, csp, https);
     return redirection;
   }
 
-  appliquerEntetes(response, csp);
+  appliquerEntetes(response, csp, https);
   return response;
 }
 
-function appliquerEntetes(reponse: NextResponse, csp: string) {
+function appliquerEntetes(reponse: NextResponse, csp: string, https: boolean) {
   reponse.headers.set("Content-Security-Policy", csp);
-  for (const [cle, valeur] of Object.entries(securityHeaders(DEV))) {
+  for (const [cle, valeur] of Object.entries(securityHeaders(DEV, https))) {
     reponse.headers.set(cle, valeur);
   }
 }

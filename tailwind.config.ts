@@ -1,10 +1,8 @@
 import type { Config } from "tailwindcss";
 
 /**
- * Design system « Botanical Health Narrative ».
- * Port direct des tokens générés par Google Stitch
- * (projet 10900663085498802054), afin que les classes utilisées dans les
- * maquettes fonctionnent telles quelles.
+ * Palette Adobe fournie : marine, océan, turquoise, brume et ambre.
+ * Les variantes claires/foncées assurent un texte lisible sur chaque surface.
  */
 const config: Config = {
   darkMode: "class",
@@ -12,54 +10,61 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "#f8f9f9",
-        "on-background": "#191c1c",
+        brand: {
+          navy: "#173B57",
+          ocean: "#247BA0",
+          teal: "#56B8B0",
+          mist: "#E5F3F4",
+          gold: "#F4B942",
+        },
+        background: "#F4F8FA",
+        "on-background": "#173B57",
 
-        surface: "#f8f9f9",
-        "surface-dim": "#d9dada",
-        "surface-bright": "#f8f9f9",
+        surface: "#F4F8FA",
+        "surface-dim": "#D2E4EB",
+        "surface-bright": "#F8FCFD",
         "surface-container-lowest": "#ffffff",
-        "surface-container-low": "#f3f4f4",
-        "surface-container": "#edeeee",
-        "surface-container-high": "#e7e8e8",
-        "surface-container-highest": "#e1e3e3",
-        "surface-variant": "#e1e3e3",
-        "surface-tint": "#006d3f",
-        "on-surface": "#191c1c",
-        "on-surface-variant": "#3f4941",
-        "inverse-surface": "#2e3131",
-        "inverse-on-surface": "#f0f1f1",
+        "surface-container-low": "#EDF5F7",
+        "surface-container": "#E5F3F4",
+        "surface-container-high": "#DCECF0",
+        "surface-container-highest": "#D2E4EB",
+        "surface-variant": "#E5F3F4",
+        "surface-tint": "#56B8B0",
+        "on-surface": "#173B57",
+        "on-surface-variant": "#526A7B",
+        "inverse-surface": "#173B57",
+        "inverse-on-surface": "#E5F3F4",
 
-        outline: "#6f7a70",
-        "outline-variant": "#bec9be",
+        outline: "#718797",
+        "outline-variant": "#C8DBE3",
 
-        primary: "#006036",
+        primary: "#247BA0",
         "on-primary": "#ffffff",
-        "primary-container": "#1a7a4a",
-        "on-primary-container": "#abffc6",
-        "inverse-primary": "#80d9a0",
-        "primary-fixed": "#9bf6ba",
-        "primary-fixed-dim": "#80d9a0",
-        "on-primary-fixed": "#00210f",
-        "on-primary-fixed-variant": "#00522e",
+        "primary-container": "#173B57",
+        "on-primary-container": "#FFFFFF",
+        "inverse-primary": "#56B8B0",
+        "primary-fixed": "#E5F3F4",
+        "primary-fixed-dim": "#56B8B0",
+        "on-primary-fixed": "#173B57",
+        "on-primary-fixed-variant": "#235F67",
 
-        secondary: "#2f6388",
+        secondary: "#247BA0",
         "on-secondary": "#ffffff",
-        "secondary-container": "#a3d4fe",
-        "on-secondary-container": "#275c81",
-        "secondary-fixed": "#cbe6ff",
-        "secondary-fixed-dim": "#9bccf6",
-        "on-secondary-fixed": "#001e30",
-        "on-secondary-fixed-variant": "#0e4b6e",
+        "secondary-container": "#D5EBF5",
+        "on-secondary-container": "#173B57",
+        "secondary-fixed": "#E5F0F8",
+        "secondary-fixed-dim": "#A5CDDF",
+        "on-secondary-fixed": "#173B57",
+        "on-secondary-fixed-variant": "#205675",
 
-        tertiary: "#6b4e00",
+        tertiary: "#785209",
         "on-tertiary": "#ffffff",
-        "tertiary-container": "#896500",
-        "on-tertiary-container": "#ffeac6",
-        "tertiary-fixed": "#ffdfa0",
-        "tertiary-fixed-dim": "#f6be39",
-        "on-tertiary-fixed": "#261a00",
-        "on-tertiary-fixed-variant": "#5c4300",
+        "tertiary-container": "#785209",
+        "on-tertiary-container": "#FFFAEB",
+        "tertiary-fixed": "#FFF1D2",
+        "tertiary-fixed-dim": "#F4B942",
+        "on-tertiary-fixed": "#4D350B",
+        "on-tertiary-fixed-variant": "#6D4A09",
 
         error: "#ba1a1a",
         "on-error": "#ffffff",
@@ -68,8 +73,8 @@ const config: Config = {
       },
       borderRadius: {
         DEFAULT: "0.25rem",
-        lg: "0.5rem",
-        xl: "0.75rem",
+        lg: "0.75rem",
+        xl: "1.125rem",
         full: "9999px",
       },
       spacing: {
@@ -82,10 +87,10 @@ const config: Config = {
         "container-padding-desktop": "32px",
       },
       fontFamily: {
-        "display-hero": ["var(--font-newsreader)", "serif"],
-        "headline-lg": ["var(--font-newsreader)", "serif"],
-        "headline-lg-mobile": ["var(--font-newsreader)", "serif"],
-        "headline-md": ["var(--font-newsreader)", "serif"],
+        "display-hero": ["var(--font-inter)", "sans-serif"],
+        "headline-lg": ["var(--font-inter)", "sans-serif"],
+        "headline-lg-mobile": ["var(--font-inter)", "sans-serif"],
+        "headline-md": ["var(--font-inter)", "sans-serif"],
         "title-lg": ["var(--font-inter)", "sans-serif"],
         "body-lg": ["var(--font-inter)", "sans-serif"],
         "body-md": ["var(--font-inter)", "sans-serif"],
@@ -97,7 +102,10 @@ const config: Config = {
           { lineHeight: "52px", letterSpacing: "-0.02em", fontWeight: "600" },
         ],
         "headline-lg": ["32px", { lineHeight: "40px", fontWeight: "600" }],
-        "headline-lg-mobile": ["28px", { lineHeight: "36px", fontWeight: "600" }],
+        "headline-lg-mobile": [
+          "28px",
+          { lineHeight: "36px", fontWeight: "600" },
+        ],
         "headline-md": ["24px", { lineHeight: "32px", fontWeight: "500" }],
         "title-lg": ["20px", { lineHeight: "28px", fontWeight: "600" }],
         "body-lg": ["16px", { lineHeight: "24px", fontWeight: "400" }],
@@ -106,8 +114,8 @@ const config: Config = {
       },
       boxShadow: {
         // « Cloud shadow » du design system : jamais d'ombre dure.
-        card: "0 4px 12px rgba(26, 82, 118, 0.08)",
-        dock: "0 -4px 12px rgba(26, 82, 118, 0.08)",
+        card: "0 4px 24px -8px rgba(23, 59, 87, 0.12)",
+        dock: "0 -4px 24px rgba(23, 59, 87, 0.06)",
       },
     },
   },

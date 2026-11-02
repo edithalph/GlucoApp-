@@ -35,9 +35,9 @@ function graduations(min: number, max: number, cible = 4): number[] {
 
   const brut = etendue / cible;
   const magnitude = 10 ** Math.floor(Math.log10(brut));
-  const pas = [1, 2, 2.5, 5, 10]
-    .map((m) => m * magnitude)
-    .find((p) => p >= brut) ?? magnitude * 10;
+  const pas =
+    [1, 2, 2.5, 5, 10].map((m) => m * magnitude).find((p) => p >= brut) ??
+    magnitude * 10;
 
   const debut = Math.ceil(min / pas) * pas;
   const valeurs: number[] = [];
@@ -53,7 +53,7 @@ export function LineChart({
   bandeMax,
   formatValeur,
   formatAbscisse,
-  couleur = "#2f6388",
+  couleur = "#247BA0",
   messageVide = "Pas encore assez de données pour tracer une courbe.",
 }: {
   points: Point[];
@@ -120,9 +120,12 @@ export function LineChart({
         x={L}
         y={py(Math.min(bandeMax, haut))}
         width={LARGEUR - L - R}
-        height={Math.max(0, py(Math.max(bandeMin, bas)) - py(Math.min(bandeMax, haut)))}
-        fill="#9bf6ba"
-        fillOpacity={0.35}
+        height={Math.max(
+          0,
+          py(Math.max(bandeMin, bas)) - py(Math.min(bandeMax, haut)),
+        )}
+        fill="#56B8B0"
+        fillOpacity={0.15}
       />
 
       {/* Graduations horizontales */}
@@ -133,7 +136,7 @@ export function LineChart({
             y1={py(v)}
             x2={LARGEUR - R}
             y2={py(v)}
-            stroke="#bec9be"
+            stroke="#C8DBE3"
             strokeOpacity={0.4}
             strokeDasharray="3 3"
           />
@@ -142,7 +145,7 @@ export function LineChart({
             y={py(v) + 3.5}
             textAnchor="end"
             fontSize={10}
-            fill="#3f4941"
+            fill="#526A7B"
           >
             {formatValeur(v)}
           </text>
@@ -155,9 +158,11 @@ export function LineChart({
           key={`${p.x}-${i}`}
           x={px(p.x)}
           y={HAUTEUR - 8}
-          textAnchor={i === 0 ? "start" : i === gradsX.length - 1 ? "end" : "middle"}
+          textAnchor={
+            i === 0 ? "start" : i === gradsX.length - 1 ? "end" : "middle"
+          }
           fontSize={10}
-          fill="#3f4941"
+          fill="#526A7B"
         >
           {formatAbscisse(p.x)}
         </text>

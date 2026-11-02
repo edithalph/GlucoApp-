@@ -17,7 +17,7 @@ export function TopAppBar({
   const initiale = (firstName ?? "?").charAt(0).toUpperCase();
 
   return (
-    <header className="fixed top-0 z-40 flex h-16 w-full items-center justify-between bg-surface px-container-padding-mobile shadow-sm md:hidden">
+    <header className="fixed top-0 z-40 flex h-16 w-full items-center justify-between border-b border-outline-variant/40 bg-white/95 px-container-padding-mobile backdrop-blur-md md:hidden">
       <Link
         href="/profil"
         aria-label="Mon profil"
@@ -35,7 +35,7 @@ export function TopAppBar({
             {initiale}
           </span>
         )}
-        <span className="font-headline-md text-headline-md font-semibold text-primary">
+        <span className="text-xl font-semibold tracking-tight text-brand-navy">
           GlucoApp
         </span>
       </Link>

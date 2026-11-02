@@ -1,0 +1,988 @@
+{
+  "date": "2026-11-02",
+  "project": "dtaojjlotgwjrdcpvuhs",
+  "environment": {
+    "url": "http://127.0.0.1:3000",
+    "mode": "production local",
+    "next": "15.5.28",
+    "browser": "Google Chrome headless",
+    "widths": [
+      320,
+      390,
+      768,
+      1440
+    ],
+    "backend": "Supabase réel, compte QA dédié"
+  },
+  "summary": {
+    "checks": 120,
+    "passed": 120,
+    "failed": 0,
+    "browserAndServerErrors": 0
+  },
+  "performance": {
+    "navigationSamples": 36,
+    "medianMs": 849,
+    "p95Ms": 1264,
+    "minimumMs": 763,
+    "maximumMs": 1313
+  },
+  "method": "Dernier résultat accepté par nom de contrôle ; les retests ne sont comptés qu’une fois. La création initiale du compte a été vérifiée par la redirection du formulaire et une lecture administrative de confirmation, en dehors de ces 120 contrôles.",
+  "checks": [
+    {
+      "name": "Connexion du nouveau compte",
+      "pass": true,
+      "ms": 4980,
+      "detail": "/tableau-de-bord"
+    },
+    {
+      "name": "Profil initial : champs, âge et sexe",
+      "pass": true,
+      "ms": 6312
+    },
+    {
+      "name": "Profil médical et ouverture du tableau de bord",
+      "pass": true,
+      "ms": 7574
+    },
+    {
+      "name": "Écran /tableau-de-bord à 1440px",
+      "pass": true,
+      "ms": 938,
+      "detail": {
+        "loadMs": 856
+      }
+    },
+    {
+      "name": "Écran /glycemie à 1440px",
+      "pass": true,
+      "ms": 1075,
+      "detail": {
+        "loadMs": 993
+      }
+    },
+    {
+      "name": "Écran /glycemie/saisie à 1440px",
+      "pass": true,
+      "ms": 923,
+      "detail": {
+        "loadMs": 872
+      }
+    },
+    {
+      "name": "Écran /poids/saisie à 1440px",
+      "pass": true,
+      "ms": 779,
+      "detail": {
+        "loadMs": 743
+      }
+    },
+    {
+      "name": "Écran /repas à 1440px",
+      "pass": true,
+      "ms": 833,
+      "detail": {
+        "loadMs": 806
+      }
+    },
+    {
+      "name": "Écran /repas/composer à 1440px",
+      "pass": true,
+      "ms": 849,
+      "detail": {
+        "loadMs": 808
+      }
+    },
+    {
+      "name": "Écran /the à 1440px",
+      "pass": true,
+      "ms": 902,
+      "detail": {
+        "loadMs": 854
+      }
+    },
+    {
+      "name": "Écran /the/session/nouvelle à 1440px",
+      "pass": true,
+      "ms": 1089,
+      "detail": {
+        "loadMs": 1044
+      }
+    },
+    {
+      "name": "Écran /conseils à 1440px",
+      "pass": true,
+      "ms": 815,
+      "detail": {
+        "loadMs": 775
+      }
+    },
+    {
+      "name": "Écran /profil à 1440px",
+      "pass": true,
+      "ms": 848,
+      "detail": {
+        "loadMs": 806
+      }
+    },
+    {
+      "name": "Écran /profil/rappels à 1440px",
+      "pass": true,
+      "ms": 899,
+      "detail": {
+        "loadMs": 856
+      }
+    },
+    {
+      "name": "Écran /tableau-de-bord à 390px",
+      "pass": true,
+      "ms": 875,
+      "detail": {
+        "loadMs": 820
+      }
+    },
+    {
+      "name": "Écran /glycemie à 390px",
+      "pass": true,
+      "ms": 871,
+      "detail": {
+        "loadMs": 797
+      }
+    },
+    {
+      "name": "Écran /glycemie/saisie à 390px",
+      "pass": true,
+      "ms": 878,
+      "detail": {
+        "loadMs": 834
+      }
+    },
+    {
+      "name": "Écran /poids/saisie à 390px",
+      "pass": true,
+      "ms": 830,
+      "detail": {
+        "loadMs": 788
+      }
+    },
+    {
+      "name": "Écran /repas à 390px",
+      "pass": true,
+      "ms": 801,
+      "detail": {
+        "loadMs": 778
+      }
+    },
+    {
+      "name": "Écran /repas/composer à 390px",
+      "pass": true,
+      "ms": 815,
+      "detail": {
+        "loadMs": 788
+      }
+    },
+    {
+      "name": "Écran /the à 390px",
+      "pass": true,
+      "ms": 902,
+      "detail": {
+        "loadMs": 869
+      }
+    },
+    {
+      "name": "Écran /the/session/nouvelle à 390px",
+      "pass": true,
+      "ms": 1138,
+      "detail": {
+        "loadMs": 1095
+      }
+    },
+    {
+      "name": "Écran /conseils à 390px",
+      "pass": true,
+      "ms": 916,
+      "detail": {
+        "loadMs": 878
+      }
+    },
+    {
+      "name": "Écran /profil à 390px",
+      "pass": true,
+      "ms": 865,
+      "detail": {
+        "loadMs": 829
+      }
+    },
+    {
+      "name": "Écran /profil/rappels à 390px",
+      "pass": true,
+      "ms": 981,
+      "detail": {
+        "loadMs": 947
+      }
+    },
+    {
+      "name": "Écran /tableau-de-bord à 320px",
+      "pass": true,
+      "ms": 998,
+      "detail": {
+        "loadMs": 939
+      }
+    },
+    {
+      "name": "Écran /glycemie à 320px",
+      "pass": true,
+      "ms": 951,
+      "detail": {
+        "loadMs": 882
+      }
+    },
+    {
+      "name": "Écran /glycemie/saisie à 320px",
+      "pass": true,
+      "ms": 843,
+      "detail": {
+        "loadMs": 810
+      }
+    },
+    {
+      "name": "Écran /poids/saisie à 320px",
+      "pass": true,
+      "ms": 866,
+      "detail": {
+        "loadMs": 820
+      }
+    },
+    {
+      "name": "Écran /repas à 320px",
+      "pass": true,
+      "ms": 801,
+      "detail": {
+        "loadMs": 778
+      }
+    },
+    {
+      "name": "Écran /repas/composer à 320px",
+      "pass": true,
+      "ms": 817,
+      "detail": {
+        "loadMs": 780
+      }
+    },
+    {
+      "name": "Écran /the à 320px",
+      "pass": true,
+      "ms": 836,
+      "detail": {
+        "loadMs": 802
+      }
+    },
+    {
+      "name": "Écran /the/session/nouvelle à 320px",
+      "pass": true,
+      "ms": 1072,
+      "detail": {
+        "loadMs": 1031
+      }
+    },
+    {
+      "name": "Écran /conseils à 320px",
+      "pass": true,
+      "ms": 816,
+      "detail": {
+        "loadMs": 773
+      }
+    },
+    {
+      "name": "Écran /profil à 320px",
+      "pass": true,
+      "ms": 928,
+      "detail": {
+        "loadMs": 876
+      }
+    },
+    {
+      "name": "Écran /profil/rappels à 320px",
+      "pass": true,
+      "ms": 1097,
+      "detail": {
+        "loadMs": 1065
+      }
+    },
+    {
+      "name": "Écran /tableau-de-bord à 768px",
+      "pass": true,
+      "ms": 889,
+      "detail": {
+        "loadMs": 818
+      }
+    },
+    {
+      "name": "Écran /glycemie à 768px",
+      "pass": true,
+      "ms": 884,
+      "detail": {
+        "loadMs": 813
+      }
+    },
+    {
+      "name": "Écran /glycemie/saisie à 768px",
+      "pass": true,
+      "ms": 1144,
+      "detail": {
+        "loadMs": 1098
+      }
+    },
+    {
+      "name": "Écran /poids/saisie à 768px",
+      "pass": true,
+      "ms": 815,
+      "detail": {
+        "loadMs": 777
+      }
+    },
+    {
+      "name": "Écran /repas à 768px",
+      "pass": true,
+      "ms": 831,
+      "detail": {
+        "loadMs": 800
+      }
+    },
+    {
+      "name": "Écran /repas/composer à 768px",
+      "pass": true,
+      "ms": 916,
+      "detail": {
+        "loadMs": 887
+      }
+    },
+    {
+      "name": "Écran /the à 768px",
+      "pass": true,
+      "ms": 852,
+      "detail": {
+        "loadMs": 808
+      }
+    },
+    {
+      "name": "Écran /the/session/nouvelle à 768px",
+      "pass": true,
+      "ms": 1088,
+      "detail": {
+        "loadMs": 1040
+      }
+    },
+    {
+      "name": "Écran /conseils à 768px",
+      "pass": true,
+      "ms": 816,
+      "detail": {
+        "loadMs": 780
+      }
+    },
+    {
+      "name": "Écran /profil à 768px",
+      "pass": true,
+      "ms": 1098,
+      "detail": {
+        "loadMs": 1044
+      }
+    },
+    {
+      "name": "Écran /profil/rappels à 768px",
+      "pass": true,
+      "ms": 830,
+      "detail": {
+        "loadMs": 788
+      }
+    },
+    {
+      "name": "Mesure : validation, effacement, contexte et journal enrichi",
+      "pass": true,
+      "ms": 4053,
+      "detail": {
+        "saveMs": 1533
+      }
+    },
+    {
+      "name": "Filtre glycémie : Aujourd'hui",
+      "pass": true,
+      "ms": 2241
+    },
+    {
+      "name": "Filtre glycémie : 7 jours",
+      "pass": true,
+      "ms": 1149
+    },
+    {
+      "name": "Filtre glycémie : 30 jours",
+      "pass": true,
+      "ms": 1202
+    },
+    {
+      "name": "Filtre glycémie : 3 mois",
+      "pass": true,
+      "ms": 963
+    },
+    {
+      "name": "Suppression mesure : annuler puis confirmer",
+      "pass": true,
+      "ms": 1493
+    },
+    {
+      "name": "Poids : saisie et mise à jour du profil",
+      "pass": true,
+      "ms": 4239
+    },
+    {
+      "name": "Repas : recherche, portions et création",
+      "pass": true,
+      "ms": 10558,
+      "detail": {
+        "searchMs": 1806,
+        "saveMs": 4231
+      }
+    },
+    {
+      "name": "Repas : stratégies, retour et mesure liée",
+      "pass": true,
+      "ms": 6704,
+      "detail": {
+        "saveMs": 1791
+      }
+    },
+    {
+      "name": "Repas : favori puis retrait",
+      "pass": true,
+      "ms": 2730
+    },
+    {
+      "name": "Repas : duplication et suppression de la copie",
+      "pass": true,
+      "ms": 7370
+    },
+    {
+      "name": "Rappels : création, désactivation, réactivation",
+      "pass": true,
+      "ms": 5510
+    },
+    {
+      "name": "Unités : mg/dL, mmol/L, retour g/L",
+      "pass": true,
+      "ms": 6358
+    },
+    {
+      "name": "Conseils : filtres et lecture de tous les articles",
+      "pass": true,
+      "ms": 13084,
+      "detail": {
+        "articles": 5
+      }
+    },
+    {
+      "name": "Thé : démarrer, marquer la prise et les trois mesures",
+      "pass": true,
+      "ms": 14601,
+      "detail": "Session complète ; saisies anticipées explicitement permises par l’interface"
+    },
+    {
+      "name": "Thé : supprimer la session terminée",
+      "pass": true,
+      "ms": 3678
+    },
+    {
+      "name": "Thé : terminer une session sans mesure",
+      "pass": true,
+      "ms": 6757
+    },
+    {
+      "name": "Lien repas conservé sans ouvrir le contexte",
+      "pass": true,
+      "ms": 3905
+    },
+    {
+      "name": "Contexte enrichi conservé après fermeture du panneau",
+      "pass": true,
+      "ms": 2852
+    },
+    {
+      "name": "Période actualisée : Aujourd'hui",
+      "pass": true,
+      "ms": 1797
+    },
+    {
+      "name": "Période actualisée : 7 jours",
+      "pass": true,
+      "ms": 988
+    },
+    {
+      "name": "Période actualisée : 30 jours",
+      "pass": true,
+      "ms": 1941
+    },
+    {
+      "name": "Période actualisée : 3 mois",
+      "pass": true,
+      "ms": 1914
+    },
+    {
+      "name": "Modification profil : informations conservées et enregistrées",
+      "pass": true,
+      "ms": 6676
+    },
+    {
+      "name": "Protection RLS : aucune ligne appartenant à autrui",
+      "pass": true,
+      "ms": 2032,
+      "detail": "7 tables vérifiées avec le jeton du compte test"
+    },
+    {
+      "name": "Petits écrans : champs thé et journal repas",
+      "pass": true,
+      "ms": 2866
+    },
+    {
+      "name": "Navigation principale : 5 destinations mobile et ordinateur",
+      "pass": true,
+      "ms": 2109
+    },
+    {
+      "name": "Pages introuvables : repas, session et article inexistants",
+      "pass": true,
+      "ms": 7175
+    },
+    {
+      "name": "Retour OAuth incomplet : redirection propre vers la connexion",
+      "pass": true,
+      "ms": 588
+    },
+    {
+      "name": "Navigation /tableau-de-bord 1440px tour 1",
+      "pass": true,
+      "ms": 843,
+      "detail": {
+        "ttfbMs": 804,
+        "domReadyMs": 823,
+        "fcpMs": null
+      }
+    },
+    {
+      "name": "Navigation /glycemie 1440px tour 1",
+      "pass": true,
+      "ms": 842,
+      "detail": {
+        "ttfbMs": 793,
+        "domReadyMs": 818,
+        "fcpMs": null
+      }
+    },
+    {
+      "name": "Navigation /repas 1440px tour 1",
+      "pass": true,
+      "ms": 838,
+      "detail": {
+        "ttfbMs": 803,
+        "domReadyMs": 821,
+        "fcpMs": null
+      }
+    },
+    {
+      "name": "Navigation /the 1440px tour 1",
+      "pass": true,
+      "ms": 943,
+      "detail": {
+        "ttfbMs": 908,
+        "domReadyMs": 926,
+        "fcpMs": null
+      }
+    },
+    {
+      "name": "Navigation /profil 1440px tour 1",
+      "pass": true,
+      "ms": 806,
+      "detail": {
+        "ttfbMs": 770,
+        "domReadyMs": 789,
+        "fcpMs": null
+      }
+    },
+    {
+      "name": "Navigation /profil/rappels 1440px tour 1",
+      "pass": true,
+      "ms": 784,
+      "detail": {
+        "ttfbMs": 731,
+        "domReadyMs": 756,
+        "fcpMs": null
+      }
+    },
+    {
+      "name": "Navigation /tableau-de-bord 1440px tour 2",
+      "pass": true,
+      "ms": 825,
+      "detail": {
+        "ttfbMs": 777,
+        "domReadyMs": 801,
+        "fcpMs": null
+      }
+    },
+    {
+      "name": "Navigation /glycemie 1440px tour 2",
+      "pass": true,
+      "ms": 1264,
+      "detail": {
+        "ttfbMs": 1217,
+        "domReadyMs": 1242,
+        "fcpMs": null
+      }
+    },
+    {
+      "name": "Navigation /repas 1440px tour 2",
+      "pass": true,
+      "ms": 820,
+      "detail": {
+        "ttfbMs": 780,
+        "domReadyMs": 801,
+        "fcpMs": null
+      }
+    },
+    {
+      "name": "Navigation /the 1440px tour 2",
+      "pass": true,
+      "ms": 1008,
+      "detail": {
+        "ttfbMs": 962,
+        "domReadyMs": 988,
+        "fcpMs": null
+      }
+    },
+    {
+      "name": "Navigation /profil 1440px tour 2",
+      "pass": true,
+      "ms": 772,
+      "detail": {
+        "ttfbMs": 739,
+        "domReadyMs": 754,
+        "fcpMs": null
+      }
+    },
+    {
+      "name": "Navigation /profil/rappels 1440px tour 2",
+      "pass": true,
+      "ms": 968,
+      "detail": {
+        "ttfbMs": 920,
+        "domReadyMs": 945,
+        "fcpMs": null
+      }
+    },
+    {
+      "name": "Navigation /tableau-de-bord 1440px tour 3",
+      "pass": true,
+      "ms": 822,
+      "detail": {
+        "ttfbMs": 775,
+        "domReadyMs": 799,
+        "fcpMs": null
+      }
+    },
+    {
+      "name": "Navigation /glycemie 1440px tour 3",
+      "pass": true,
+      "ms": 820,
+      "detail": {
+        "ttfbMs": 775,
+        "domReadyMs": 799,
+        "fcpMs": null
+      }
+    },
+    {
+      "name": "Navigation /repas 1440px tour 3",
+      "pass": true,
+      "ms": 785,
+      "detail": {
+        "ttfbMs": 738,
+        "domReadyMs": 765,
+        "fcpMs": null
+      }
+    },
+    {
+      "name": "Navigation /the 1440px tour 3",
+      "pass": true,
+      "ms": 875,
+      "detail": {
+        "ttfbMs": 829,
+        "domReadyMs": 853,
+        "fcpMs": null
+      }
+    },
+    {
+      "name": "Navigation /profil 1440px tour 3",
+      "pass": true,
+      "ms": 929,
+      "detail": {
+        "ttfbMs": 882,
+        "domReadyMs": 906,
+        "fcpMs": null
+      }
+    },
+    {
+      "name": "Navigation /profil/rappels 1440px tour 3",
+      "pass": true,
+      "ms": 1098,
+      "detail": {
+        "ttfbMs": 1050,
+        "domReadyMs": 1074,
+        "fcpMs": null
+      }
+    },
+    {
+      "name": "Navigation /tableau-de-bord 390px tour 1",
+      "pass": true,
+      "ms": 836,
+      "detail": {
+        "ttfbMs": 791,
+        "domReadyMs": 814,
+        "fcpMs": null
+      }
+    },
+    {
+      "name": "Navigation /glycemie 390px tour 1",
+      "pass": true,
+      "ms": 781,
+      "detail": {
+        "ttfbMs": 736,
+        "domReadyMs": 761,
+        "fcpMs": null
+      }
+    },
+    {
+      "name": "Navigation /repas 390px tour 1",
+      "pass": true,
+      "ms": 956,
+      "detail": {
+        "ttfbMs": 914,
+        "domReadyMs": 938,
+        "fcpMs": null
+      }
+    },
+    {
+      "name": "Navigation /the 390px tour 1",
+      "pass": true,
+      "ms": 821,
+      "detail": {
+        "ttfbMs": 771,
+        "domReadyMs": 796,
+        "fcpMs": null
+      }
+    },
+    {
+      "name": "Navigation /profil 390px tour 1",
+      "pass": true,
+      "ms": 823,
+      "detail": {
+        "ttfbMs": 780,
+        "domReadyMs": 808,
+        "fcpMs": null
+      }
+    },
+    {
+      "name": "Navigation /profil/rappels 390px tour 1",
+      "pass": true,
+      "ms": 872,
+      "detail": {
+        "ttfbMs": 827,
+        "domReadyMs": 852,
+        "fcpMs": null
+      }
+    },
+    {
+      "name": "Navigation /tableau-de-bord 390px tour 2",
+      "pass": true,
+      "ms": 1128,
+      "detail": {
+        "ttfbMs": 1082,
+        "domReadyMs": 1107,
+        "fcpMs": null
+      }
+    },
+    {
+      "name": "Navigation /glycemie 390px tour 2",
+      "pass": true,
+      "ms": 805,
+      "detail": {
+        "ttfbMs": 764,
+        "domReadyMs": 790,
+        "fcpMs": null
+      }
+    },
+    {
+      "name": "Navigation /repas 390px tour 2",
+      "pass": true,
+      "ms": 804,
+      "detail": {
+        "ttfbMs": 759,
+        "domReadyMs": 785,
+        "fcpMs": null
+      }
+    },
+    {
+      "name": "Navigation /the 390px tour 2",
+      "pass": true,
+      "ms": 855,
+      "detail": {
+        "ttfbMs": 810,
+        "domReadyMs": 835,
+        "fcpMs": null
+      }
+    },
+    {
+      "name": "Navigation /profil 390px tour 2",
+      "pass": true,
+      "ms": 915,
+      "detail": {
+        "ttfbMs": 870,
+        "domReadyMs": 894,
+        "fcpMs": null
+      }
+    },
+    {
+      "name": "Navigation /profil/rappels 390px tour 2",
+      "pass": true,
+      "ms": 1012,
+      "detail": {
+        "ttfbMs": 965,
+        "domReadyMs": 990,
+        "fcpMs": null
+      }
+    },
+    {
+      "name": "Navigation /tableau-de-bord 390px tour 3",
+      "pass": true,
+      "ms": 1052,
+      "detail": {
+        "ttfbMs": 1005,
+        "domReadyMs": 1029,
+        "fcpMs": null
+      }
+    },
+    {
+      "name": "Navigation /glycemie 390px tour 3",
+      "pass": true,
+      "ms": 961,
+      "detail": {
+        "ttfbMs": 921,
+        "domReadyMs": 943,
+        "fcpMs": null
+      }
+    },
+    {
+      "name": "Navigation /repas 390px tour 3",
+      "pass": true,
+      "ms": 1242,
+      "detail": {
+        "ttfbMs": 1194,
+        "domReadyMs": 1221,
+        "fcpMs": null
+      }
+    },
+    {
+      "name": "Navigation /the 390px tour 3",
+      "pass": true,
+      "ms": 1313,
+      "detail": {
+        "ttfbMs": 1272,
+        "domReadyMs": 1295,
+        "fcpMs": null
+      }
+    },
+    {
+      "name": "Navigation /profil 390px tour 3",
+      "pass": true,
+      "ms": 1052,
+      "detail": {
+        "ttfbMs": 1006,
+        "domReadyMs": 1030,
+        "fcpMs": null
+      }
+    },
+    {
+      "name": "Navigation /profil/rappels 390px tour 3",
+      "pass": true,
+      "ms": 763,
+      "detail": {
+        "ttfbMs": 729,
+        "domReadyMs": 746,
+        "fcpMs": null
+      }
+    },
+    {
+      "name": "Réactivité locale du pavé numérique (10 clics)",
+      "pass": true,
+      "ms": 1501,
+      "detail": {
+        "valuesMs": [
+          23,
+          29,
+          29,
+          28,
+          27,
+          30,
+          27,
+          27,
+          27,
+          27
+        ],
+        "medianMs": 27,
+        "maxMs": 30
+      }
+    },
+    {
+      "name": "Bouton d'enregistrement : retour immédiat et blocage des doubles clics",
+      "pass": true,
+      "ms": 2719,
+      "detail": {
+        "feedbackMs": 37,
+        "completedMs": 1857
+      }
+    },
+    {
+      "name": "Lancement public : splash puis introduction",
+      "pass": true,
+      "ms": 1737
+    },
+    {
+      "name": "Connexion sociale : boutons conformes aux fournisseurs activés",
+      "pass": true,
+      "ms": 1219
+    },
+    {
+      "name": "Protection des écrans privés sans connexion",
+      "pass": true,
+      "ms": 1496
+    },
+    {
+      "name": "Introduction : Suivant, Commencer et Passer",
+      "pass": true,
+      "ms": 1065
+    },
+    {
+      "name": "Connexion : validation, mot de passe erroné, connexion valide",
+      "pass": true,
+      "ms": 4844
+    },
+    {
+      "name": "Déconnexion et retour à la connexion",
+      "pass": true,
+      "ms": 2141
+    }
+  ],
+  "limitations": [
+    "Affichage mobile dans Chrome de bureau ; pas de test sur appareils Safari/iOS/Android réels.",
+    "Aucun test de charge multi-utilisateur ou de réseau mobile dégradé.",
+    "Notifications push non implémentées.",
+    "Google et Apple désactivés dans Supabase ; leurs boutons sont masqués et leur authentification externe n’a pas été testée.",
+    "Audit npm de production : 0 critique, 5 hautes et 1 modérée ; migration et revue des dépendances encore nécessaires avant déploiement public."
+  ]
+}

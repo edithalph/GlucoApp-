@@ -54,7 +54,7 @@ export function GlucoseField({
           value={saisie}
           onChange={(e) => changer(e.target.value)}
           placeholder="—"
-          className="h-14 flex-1 rounded-xl border border-outline-variant bg-surface-container-lowest px-4 font-title-lg text-title-lg tabular-nums text-on-background focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+          className="h-14 min-w-0 flex-1 rounded-xl border border-outline-variant bg-surface-container-lowest px-4 font-title-lg text-title-lg tabular-nums text-on-background focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
         />
         <span className="font-body-lg text-body-lg text-on-surface-variant">
           {UNIT_LABELS[unit]}
